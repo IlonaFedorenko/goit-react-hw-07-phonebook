@@ -3,11 +3,11 @@ import css from './ContactList.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contactsOperations';
-import { selectorItems } from '../../redux/selectors';
+import { selectorfilteredContacts } from '../../redux/selectors';
 
 export function ContactList() {
   const dispatch = useDispatch();
-  const filterContacts = useSelector(selectorItems);
+  const filterContacts = useSelector(selectorfilteredContacts);
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
