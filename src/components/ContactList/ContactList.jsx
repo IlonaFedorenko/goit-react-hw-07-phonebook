@@ -3,26 +3,21 @@ import css from './ContactList.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from '../../redux/contactsOperations';
-import { selectFilteredContacts } from '../../redux/selectors';
+import { selectorItems } from '../../redux/selectors';
 
 export function ContactList() {
   const dispatch = useDispatch();
-  // const filter = useSelector(selectorFilter);
-  // const contacts = useSelector(selectorContscts);
-  // const filterContacts = contacts.filter(contact => {
-  //   return contact.name.toLowerCase().includes(filter.toLowerCase());
-  // });
-  const filterContacts = useSelector(selectFilteredContacts);
+  const filterContacts = useSelector(selectorItems);
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
 
   return (
     <ul className={css.list}>
-      {filterContacts.map(({ id, name, number }) => (
+      {filterContacts.map(({ id, name, phone }) => (
         <li className={css.item} key={id}>
           <p>
-            {name}:{number}
+            {name}:{phone}
           </p>
           <button
             className={css.button}
@@ -43,7 +38,7 @@ ContactList.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
     })
   ),
 };

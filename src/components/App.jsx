@@ -27,7 +27,7 @@ export const App = () => {
       <Section title="Contacts">
         <Filter />
         <ContactList />
-        {/* {contacts.length > 0 && <ContactList />} */}
+        {contacts.length > 0 && <ContactList />}
       </Section>
     </>
   );
