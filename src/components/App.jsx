@@ -5,6 +5,8 @@ import { fetchContacts } from '../redux/contactsOperations';
 
 import { useSelector } from 'react-redux';
 import { selectorContscts } from '../redux/selectors';
+import { selectorIsLoading } from '../redux/selectors';
+import { selectorError } from '../redux/selectors';
 
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
@@ -13,6 +15,8 @@ import { Section } from './Section/Section';
 
 export const App = () => {
   const contacts = useSelector(selectorContscts);
+  const error = useSelector(selectorError);
+  const isLoading = useSelector(selectorIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +30,8 @@ export const App = () => {
       </Section>
       <Section title="Contacts">
         <Filter />
+        {isLoading && !error && <b>Request in progress...</b>}
+        {error && error}
         <ContactList />
         {contacts.length > 0 && <ContactList />}
       </Section>
